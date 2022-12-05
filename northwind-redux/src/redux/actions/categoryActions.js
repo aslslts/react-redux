@@ -16,7 +16,7 @@ export function getCategories() {
     let url = " http://localhost:3001/categories";
 
     const response = await fetch(url);
-    const result = Response.json();
+    const result = response.json();
     return dispatch(getCategoriesSuccess(result));
   };
 }
