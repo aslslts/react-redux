@@ -12,11 +12,11 @@ export function getCategoriesSuccess(categories) {
 }
 
 export function getCategories() {
-  return async function (dispatch) {
-    let url = " http://localhost:3001/categories";
+  return function (dispatch) {
+    let url = "http://localhost:3001/categories";
 
-    const response = await fetch(url);
-    const result = response.json();
-    return dispatch(getCategoriesSuccess(result));
+    return fetch(url)
+      .then((response) => response.json())
+      .then((result) => dispatch(getCategoriesSuccess(result)));
   };
 }
