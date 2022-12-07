@@ -18,7 +18,7 @@ function Navi(args) {
   return (
     <div>
       <Navbar {...args}>
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">Northwind Redux</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
@@ -26,7 +26,7 @@ function Navi(args) {
               <NavLink href="/components/">Components</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
+              <NavLink href="https://github.com/aslslts" target="_blank">
                 GitHub
               </NavLink>
             </NavItem>
