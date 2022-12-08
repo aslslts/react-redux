@@ -13,7 +13,7 @@ export function getCategoriesSuccess(categories) {
 
 export function getCategories() {
   return function (dispatch) {
-    let url = "http://localhost:3001/categories";
+    let url = "https://react-store-api-sigma.vercel.app/categories";
 
     return fetch(url)
       .then((response) => response.json())

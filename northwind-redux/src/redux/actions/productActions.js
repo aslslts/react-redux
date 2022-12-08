@@ -20,11 +20,14 @@ export function updateProductSuccess(product) {
 }
 
 export function saveProductApi(product) {
-  return fetch("http://localhost:3001/products/" + (product.id || ""), {
-    method: product.id ? "PUT" : "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(product),
-  })
+  return fetch(
+    "https://react-store-api-sigma.vercel.app/products/" + (product.id || ""),
+    {
+      method: product.id ? "PUT" : "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(product),
+    }
+  )
     .then(handleResponse)
     .catch(handleError);
 }
@@ -44,7 +47,7 @@ export function saveProduct(product) {
 
 export function getProducts(categoryId) {
   return function (dispatch) {
-    let url = "http://localhost:3001/products";
+    let url = "https://react-store-api-sigma.vercel.app/products";
     if (categoryId) {
       url = url + "?categoryId=" + categoryId;
     }
