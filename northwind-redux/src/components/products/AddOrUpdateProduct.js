@@ -14,12 +14,13 @@ function AddOrUpdateProduct({
   ...props
 }) {
   const [product, setProduct] = useState({ ...props.product });
+  const [errors, setErrors] = useState({});
   useEffect(() => {
     if (categories.length === 0) {
       getCategories();
     }
     setProduct({ ...props.product });
-  }, [props.product]);
+  }, [categories.length, getCategories, props.product]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -27,7 +28,22 @@ function AddOrUpdateProduct({
       ...previousProduct,
       [name]: name === "categoryId" ? parseInt(value, 10) : value,
     }));
+    validate(name, value);
   }
+  function validate(name, value) {
+    if (name === "productName" && value === "") {
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        productName: "Product name must be!",
+      }));
+    } else {
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        productName: "",
+      }));
+    }
+  }
+
   function handleSave(event) {
     event.preventDefault();
     saveProduct(product).then(() => {
@@ -40,10 +56,12 @@ function AddOrUpdateProduct({
       categories={categories}
       onChange={handleChange}
       onSave={handleSave}
+      errors={errors}
     />
   );
 }
 export function getProductById(products, productId) {
+  // eslint-disable-next-line eqeqeq
   let product = products.find((product) => product.id == productId) || null;
   return product;
 }
